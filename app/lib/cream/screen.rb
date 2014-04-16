@@ -81,6 +81,7 @@ enteramountscreen.bind("Return") {calcresult}
 
 def calcresult
   begin
+     # add a comment
      puts 'calculate result'
      puts '1'
      #$currvalue.value = 0
