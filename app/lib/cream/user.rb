@@ -13,7 +13,7 @@
 # includes start ------------------------------------
 # includes end --------------------------------------
 class User
-  @@no_of_users
+  #@@no_of_users
   
   # create a new user object
   def initialize(auth_level, fnam, lnam)
