@@ -69,7 +69,7 @@ Tk::Tile::Button.new(content) {text '-'; command {setaction('-')}}.grid( :column
 # create the button with value 0
 Tk::Tile::Button.new(content) {text '0'; command {add1digit('0')}}.grid( :column => 0, :row => 4, :sticky => 'w')
 # create the button with value ,
-Tk::Tile::Button.new(content) {text ','; command {add1digit(',')}}.grid( :column => 1, :row => 4, :sticky => 'w')
+Tk::Tile::Button.new(content) {text ','; command {add1digit('.')}}.grid( :column => 1, :row => 4, :sticky => 'w')
 # create the button with value =
 Tk::Tile::Button.new(content) {text '='; command {calcresult}}.grid( :column => 2, :row => 4, :sticky => 'w')
 # create the button with value +
@@ -83,23 +83,22 @@ def calcresult
   begin
      # add a comment
      puts 'calculate result'
-     puts '1'
      #$currvalue.value = 0
      $currvaluereset = 'y'
-     puts '2' 
      $svcalc = 0
-     puts '3'
      $commaset = ' '
-     puts '4'
+     puts 'act to perform ' + $actoperf
      #$tl_calc.value = 'result'
-     puts 'previous value <' + $prevvalue + '>'
+     puts 'previous value <' + $prevvalue.to_s + '>'
      if $prevvalue == 0
         puts 'previous value is 0'
-        $prevvalue = $svcalc
+        #$prevvalue = $svcalc
+        $prevvalue.value = $currvalue
+        puts '1 prev value change to ' + $prevvalue.to_s
      else     
         if $actoperf == 'add' 
-           puts 'adding'       
-           #$svcalc.to_f = $prevvalue.to_f + $currvalue.to_f
+           puts 'adding ' + $prevvalue.to_s + ' to ' + $currvalue.to_s
+           $svcalc = $prevvalue + $currvalue
         end
         if $actoperf == 'subtract' 
            puts 'subtracting'
@@ -113,6 +112,7 @@ def calcresult
            puts 'dividing'
            $svcalc = $prevvalue / $currvalue 
         end
+        puts '2 prev value change to ' + $svcalc.to_s 
      end       
   rescue
      puts 'calculate result error <' + $svcalc +'>'
@@ -124,10 +124,10 @@ def add1digit(digit)
   begin
      puts 'add1digit <' + digit +'>'
      # if the comma-value has been entered at least once
-     if (digit == ',' and $commaset == '1')
+     if (digit == '.' and $commaset == '1')
          puts 'can not enter more than 1 comma'  
      else
-       if digit == ','
+       if digit == '.'
          $commaset = '1'
        end   
        # if the input field is at its initial 0-value replace the digit instead of concatenating it
@@ -139,7 +139,9 @@ def add1digit(digit)
          $svcalc = $svcalc + digit
        end   
        $currvalue.value = $svcalc
+       
        puts $svcalc 
+       puts '3 prev value value ' + $svcalc.to_s 
      end   
   rescue
      puts 'add 1 digit error'
