@@ -32,53 +32,71 @@ $svcalc = '0'
 # create the label select user tile 
 #Tk::Tile::Label.new(content) {text $lv_sel_user}.grid( :column => 1, :row => 1, :sticky => 'we');
 
+# create the button with consumptions to be added:
+Tk::Tile::Button.new(content) {text 'bier'; command {manageconsumption('1.60','+')}}.grid( :column => 0, :row => 0, :sticky => 'w')
+
+Tk::Tile::Button.new(content) {text 'cola'; command {manageconsumption('2.55','+')}}.grid( :column => 1, :row => 0, :sticky => 'w')
+
+Tk::Tile::Button.new(content) {text 'wijn'; command {manageconsumption('0.25','+')}}.grid( :column => 2, :row => 0, :sticky => 'w')
+
+Tk::Tile::Button.new(content) {text 'water'; command {manageconsumption('400.68','+')}}.grid( :column => 3, :row => 0, :sticky => 'w')
+
+# create the button with consumptions to be subtracted:
+Tk::Tile::Button.new(content) {text 'bier'; command {manageconsumption('1.60','-')}}.grid( :column => 0, :row => 1, :sticky => 'w')
+
+Tk::Tile::Button.new(content) {text 'cola'; command {manageconsumption('2.55','-')}}.grid( :column => 1, :row => 1, :sticky => 'w')
+
+Tk::Tile::Button.new(content) {text 'wijn'; command {manageconsumption('0.25','-')}}.grid( :column => 2, :row => 1, :sticky => 'w')
+
+Tk::Tile::Button.new(content) {text 'water'; command {manageconsumption('400.68','-')}}.grid( :column => 3, :row => 1, :sticky => 'w')
+
 
 # create the calculator inputfield overview 
-tl_overview = Tk::Tile::Entry.new(content) {width 7; textvariable $overview}.grid( :columnspan => 4, :row => 0, :sticky => 'we')
+tl_overview = Tk::Tile::Entry.new(content) {width 7; textvariable $overview}.grid( :column => 4, :columnspan => 4, :row => 0, :sticky => 'we')
 # create the calculator inputfield result 
-tl_result = Tk::Tile::Entry.new(content) {width 7; textvariable $currvalue}.grid( :columnspan => 3, :row => 1, :sticky => 'we')
+tl_result = Tk::Tile::Entry.new(content) {width 7; textvariable $currvalue}.grid( :column => 4, :columnspan => 3, :row => 1, :sticky => 'we')
 
 # create the button with value backspace
-Tk::Tile::Button.new(content) {text '<-'; command {delete1digit}}.grid( :column => 3, :row => 1, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '<-'; command {delete1digit}}.grid( :column => 7, :row => 1, :sticky => 'w')
 
 # create the button with value 1
-Tk::Tile::Button.new(content) {text '1'; command {add1digit('1')}}.grid( :column => 0, :row => 2, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '1'; command {add1digit('1')}}.grid( :column => 4, :row => 2, :sticky => 'w')
 # create the button with value 2
-Tk::Tile::Button.new(content) {text '2'; command {add1digit('2')}}.grid( :column => 1, :row => 2, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '2'; command {add1digit('2')}}.grid( :column => 5, :row => 2, :sticky => 'w')
 # create the button with value 3
-Tk::Tile::Button.new(content) {text '3'; command {add1digit('3')}}.grid( :column => 2, :row => 2, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '3'; command {add1digit('3')}}.grid( :column => 6, :row => 2, :sticky => 'w')
 # create the button with value %
-Tk::Tile::Button.new(content) {text '%'; command {setaction('%')}}.grid( :column => 3, :row => 2, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '%'; command {setaction('%')}}.grid( :column => 7, :row => 2, :sticky => 'w')
 
 # create the button with value 4
-Tk::Tile::Button.new(content) {text '4'; command {add1digit('4')}}.grid( :column => 0, :row => 3, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '4'; command {add1digit('4')}}.grid( :column => 4, :row => 3, :sticky => 'w')
 # create the button with value 5
-Tk::Tile::Button.new(content) {text '5'; command {add1digit('5')}}.grid( :column => 1, :row => 3, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '5'; command {add1digit('5')}}.grid( :column => 5, :row => 3, :sticky => 'w')
 # create the button with value 6
-Tk::Tile::Button.new(content) {text '6'; command {add1digit('6')}}.grid( :column => 2, :row => 3, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '6'; command {add1digit('6')}}.grid( :column => 6, :row => 3, :sticky => 'w')
 # create the button with value -
-Tk::Tile::Button.new(content) {text 'x'; command {setaction('x')}}.grid( :column => 3, :row => 3, :sticky => 'w')
+Tk::Tile::Button.new(content) {text 'x'; command {setaction('x')}}.grid( :column => 7, :row => 3, :sticky => 'w')
 
 # create the button with value 7
-Tk::Tile::Button.new(content) {text '7'; command {add1digit('7')}}.grid( :column => 0, :row => 4, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '7'; command {add1digit('7')}}.grid( :column => 4, :row => 4, :sticky => 'w')
 # create the button with value 8
-Tk::Tile::Button.new(content) {text '8'; command {add1digit('8')}}.grid( :column => 1, :row => 4, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '8'; command {add1digit('8')}}.grid( :column => 5, :row => 4, :sticky => 'w')
 # create the button with value 9
-Tk::Tile::Button.new(content) {text '9'; command {add1digit('9')}}.grid( :column => 2, :row => 4, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '9'; command {add1digit('9')}}.grid( :column => 6, :row => 4, :sticky => 'w')
 # create the button with value x
-Tk::Tile::Button.new(content) {text '-'; command {setaction('-')}}.grid( :column => 3, :row => 4, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '-'; command {setaction('-')}}.grid( :column => 7, :row => 4, :sticky => 'w')
 
 # create the button with value 0
-Tk::Tile::Button.new(content) {text '0'; command {add1digit('0')}}.grid( :column => 0, :row => 5, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '0'; command {add1digit('0')}}.grid( :column => 4, :row => 5, :sticky => 'w')
 # create the button with value ,
-Tk::Tile::Button.new(content) {text ','; command {add1digit('.')}}.grid( :column => 1, :row => 5, :sticky => 'w')
+Tk::Tile::Button.new(content) {text ','; command {add1digit('.')}}.grid( :column => 5, :row => 5, :sticky => 'w')
 # create the button with value =
-Tk::Tile::Button.new(content) {text '='; command {setaction('=')}}.grid( :column => 2, :row => 5, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '='; command {setaction('=')}}.grid( :column => 6, :row => 5, :sticky => 'w')
 # create the button with value +
-Tk::Tile::Button.new(content) {text '+'; command {setaction('+')}}.grid( :column => 3, :row => 5, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '+'; command {setaction('+')}}.grid( :column => 7, :row => 5, :sticky => 'w')
 
 # create the button with value c
-Tk::Tile::Button.new(content) {text 'c'; command {setaction('c')}}.grid( :column => 1, :row => 6, :sticky => 'w')
+Tk::Tile::Button.new(content) {text 'c'; command {setaction('c')}}.grid( :column => 4, :row => 6, :sticky => 'w')
 
 TkWinfo.children(content).each {|w| TkGrid.configure w, :padx => 5, :pady => 5}
 tl_overview.focus
@@ -151,6 +169,14 @@ def add1digit(digit)
      puts 'svcalc ' + $svcalc.to_s 
   end
 end
+
+def manageconsumption(price, action)
+  begin 
+      add1digit(price)
+      setaction(action)
+  end
+end
+
 
 def delete1digit
   begin
