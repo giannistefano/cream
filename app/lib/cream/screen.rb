@@ -101,7 +101,7 @@ Tk::Tile::Button.new(content) {text 'c'; command {resetcalc}}.grid( :column => 4
 TkWinfo.children(content).each {|w| TkGrid.configure w, :padx => 5, :pady => 5}
 tl_result.focus
 enteramountscreen.bind("Return") {calcresult}
-
+#add overview
 def calcresult
   begin
      puts 'calculate result'
