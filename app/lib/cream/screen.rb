@@ -12,6 +12,7 @@ $prevvalue = TkVariable.new
 $action = TkVariable.new
 $commaset = TkVariable.new
 $actoperf = TkVariable.new 
+$overview = TkVariable.new
 #$sv_fname  = TkVariable.new 
 #initialize screen variables - start 
 $currvalue.value = 0
@@ -33,22 +34,22 @@ $svcalc = '0'
 #Tk::Tile::Label.new(content) {text $lv_sel_user}.grid( :column => 1, :row => 1, :sticky => 'we');
 
 # create the button with consumptions to be added:
-Tk::Tile::Button.new(content) {text '+ bier'; command {manageconsumption('1.60','+')}}.grid( :column => 0, :row => 0, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '+ bier'; command {manageconsumption('1.60','+','bier')}}.grid( :column => 0, :row => 0, :sticky => 'w')
 
-Tk::Tile::Button.new(content) {text '+ cola'; command {manageconsumption('2.55','+')}}.grid( :column => 1, :row => 0, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '+ cola'; command {manageconsumption('2.55','+', 'cola')}}.grid( :column => 1, :row => 0, :sticky => 'w')
 
-Tk::Tile::Button.new(content) {text '+ wijn'; command {manageconsumption('0.25','+')}}.grid( :column => 2, :row => 0, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '+ wijn'; command {manageconsumption('0.25','+', 'wijn')}}.grid( :column => 2, :row => 0, :sticky => 'w')
 
-Tk::Tile::Button.new(content) {text '+ water'; command {manageconsumption('400.68','+')}}.grid( :column => 3, :row => 0, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '+ water'; command {manageconsumption('400.68','+', 'water')}}.grid( :column => 3, :row => 0, :sticky => 'w')
 
 # create the button with consumptions to be subtracted:
-Tk::Tile::Button.new(content) {text '- bier'; command {manageconsumption('1.60','-')}}.grid( :column => 0, :row => 1, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '- bier'; command {manageconsumption('1.60','-','bier')}}.grid( :column => 0, :row => 1, :sticky => 'w')
 
-Tk::Tile::Button.new(content) {text '- cola'; command {manageconsumption('2.55','-')}}.grid( :column => 1, :row => 1, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '- cola'; command {manageconsumption('2.55','-','cola')}}.grid( :column => 1, :row => 1, :sticky => 'w')
 
-Tk::Tile::Button.new(content) {text '- wijn'; command {manageconsumption('0.25','-')}}.grid( :column => 2, :row => 1, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '- wijn'; command {manageconsumption('0.25','-','wijn')}}.grid( :column => 2, :row => 1, :sticky => 'w')
 
-Tk::Tile::Button.new(content) {text '- water'; command {manageconsumption('400.68','-')}}.grid( :column => 3, :row => 1, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '- water'; command {manageconsumption('400.68','-','water')}}.grid( :column => 3, :row => 1, :sticky => 'w')
 
 
 # create the calculator inputfield overview 
@@ -194,11 +195,12 @@ def manageaction (action)
   end
 end
 
-def manageconsumption(price, action)
+def manageconsumption(price, action, description)
   begin 
     managedigit('+', price)
     setaction(action)
     calcresult
+    updateoverview(description, action)
   end
 end
 
@@ -227,6 +229,12 @@ def resetcalc
     $currvalue.value = 0
     $svcalc = 0
     $currvaluereset = 'y'
+  end
+end
+
+def updateoverview (description, action)
+  begin
+    $overview.value = $overview + action + description
   end
 end
 
