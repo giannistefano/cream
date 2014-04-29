@@ -12,7 +12,7 @@ $prevvalue = TkVariable.new
 $action = TkVariable.new
 $commaset = TkVariable.new
 $actoperf = TkVariable.new 
-#$sv_fname 	= TkVariable.new 
+#$sv_fname  = TkVariable.new 
 #initialize screen variables - start 
 $currvalue.value = 0
 $prevvalue.value = 0
@@ -33,22 +33,22 @@ $svcalc = '0'
 #Tk::Tile::Label.new(content) {text $lv_sel_user}.grid( :column => 1, :row => 1, :sticky => 'we');
 
 # create the button with consumptions to be added:
-Tk::Tile::Button.new(content) {text 'bier'; command {manageconsumption('1.60','+')}}.grid( :column => 0, :row => 0, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '+ bier'; command {manageconsumption('1.60','+')}}.grid( :column => 0, :row => 0, :sticky => 'w')
 
-Tk::Tile::Button.new(content) {text 'cola'; command {manageconsumption('2.55','+')}}.grid( :column => 1, :row => 0, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '+ cola'; command {manageconsumption('2.55','+')}}.grid( :column => 1, :row => 0, :sticky => 'w')
 
-Tk::Tile::Button.new(content) {text 'wijn'; command {manageconsumption('0.25','+')}}.grid( :column => 2, :row => 0, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '+ wijn'; command {manageconsumption('0.25','+')}}.grid( :column => 2, :row => 0, :sticky => 'w')
 
-Tk::Tile::Button.new(content) {text 'water'; command {manageconsumption('400.68','+')}}.grid( :column => 3, :row => 0, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '+ water'; command {manageconsumption('400.68','+')}}.grid( :column => 3, :row => 0, :sticky => 'w')
 
 # create the button with consumptions to be subtracted:
-Tk::Tile::Button.new(content) {text 'bier'; command {manageconsumption('1.60','-')}}.grid( :column => 0, :row => 1, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '- bier'; command {manageconsumption('1.60','-')}}.grid( :column => 0, :row => 1, :sticky => 'w')
 
-Tk::Tile::Button.new(content) {text 'cola'; command {manageconsumption('2.55','-')}}.grid( :column => 1, :row => 1, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '- cola'; command {manageconsumption('2.55','-')}}.grid( :column => 1, :row => 1, :sticky => 'w')
 
-Tk::Tile::Button.new(content) {text 'wijn'; command {manageconsumption('0.25','-')}}.grid( :column => 2, :row => 1, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '- wijn'; command {manageconsumption('0.25','-')}}.grid( :column => 2, :row => 1, :sticky => 'w')
 
-Tk::Tile::Button.new(content) {text 'water'; command {manageconsumption('400.68','-')}}.grid( :column => 3, :row => 1, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '- water'; command {manageconsumption('400.68','-')}}.grid( :column => 3, :row => 1, :sticky => 'w')
 
 
 # create the calculator inputfield overview 
@@ -60,48 +60,47 @@ tl_result = Tk::Tile::Entry.new(content) {width 7; textvariable $currvalue}.grid
 Tk::Tile::Button.new(content) {text '<-'; command {delete1digit}}.grid( :column => 7, :row => 1, :sticky => 'w')
 
 # create the button with value 1
-Tk::Tile::Button.new(content) {text '1'; command {add1digit('1')}}.grid( :column => 4, :row => 2, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '1'; command {managedigit('+','1')}}.grid( :column => 4, :row => 2, :sticky => 'w')
 # create the button with value 2
-Tk::Tile::Button.new(content) {text '2'; command {add1digit('2')}}.grid( :column => 5, :row => 2, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '2'; command {managedigit('+','2')}}.grid( :column => 5, :row => 2, :sticky => 'w')
 # create the button with value 3
-Tk::Tile::Button.new(content) {text '3'; command {add1digit('3')}}.grid( :column => 6, :row => 2, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '3'; command {managedigit('+','3')}}.grid( :column => 6, :row => 2, :sticky => 'w')
 # create the button with value %
-Tk::Tile::Button.new(content) {text '%'; command {setaction('%')}}.grid( :column => 7, :row => 2, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '%'; command {manageaction('%')}}.grid( :column => 7, :row => 2, :sticky => 'w')
 
 # create the button with value 4
-Tk::Tile::Button.new(content) {text '4'; command {add1digit('4')}}.grid( :column => 4, :row => 3, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '4'; command {managedigit('+','4')}}.grid( :column => 4, :row => 3, :sticky => 'w')
 # create the button with value 5
-Tk::Tile::Button.new(content) {text '5'; command {add1digit('5')}}.grid( :column => 5, :row => 3, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '5'; command {managedigit('+','5')}}.grid( :column => 5, :row => 3, :sticky => 'w')
 # create the button with value 6
-Tk::Tile::Button.new(content) {text '6'; command {add1digit('6')}}.grid( :column => 6, :row => 3, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '6'; command {managedigit('+','6')}}.grid( :column => 6, :row => 3, :sticky => 'w')
 # create the button with value -
-Tk::Tile::Button.new(content) {text 'x'; command {setaction('x')}}.grid( :column => 7, :row => 3, :sticky => 'w')
+Tk::Tile::Button.new(content) {text 'x'; command {manageaction('x')}}.grid( :column => 7, :row => 3, :sticky => 'w')
 
 # create the button with value 7
-Tk::Tile::Button.new(content) {text '7'; command {add1digit('7')}}.grid( :column => 4, :row => 4, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '7'; command {managedigit('+','7')}}.grid( :column => 4, :row => 4, :sticky => 'w')
 # create the button with value 8
-Tk::Tile::Button.new(content) {text '8'; command {add1digit('8')}}.grid( :column => 5, :row => 4, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '8'; command {managedigit('+','8')}}.grid( :column => 5, :row => 4, :sticky => 'w')
 # create the button with value 9
-Tk::Tile::Button.new(content) {text '9'; command {add1digit('9')}}.grid( :column => 6, :row => 4, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '9'; command {managedigit('+','9')}}.grid( :column => 6, :row => 4, :sticky => 'w')
 # create the button with value x
-Tk::Tile::Button.new(content) {text '-'; command {setaction('-')}}.grid( :column => 7, :row => 4, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '-'; command {manageaction('-')}}.grid( :column => 7, :row => 4, :sticky => 'w')
 
 # create the button with value 0
-Tk::Tile::Button.new(content) {text '0'; command {add1digit('0')}}.grid( :column => 4, :row => 5, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '0'; command {managedigit('+','0')}}.grid( :column => 4, :row => 5, :sticky => 'w')
 # create the button with value ,
 Tk::Tile::Button.new(content) {text ','; command {add1digit('.')}}.grid( :column => 5, :row => 5, :sticky => 'w')
 # create the button with value =
-Tk::Tile::Button.new(content) {text '='; command {setaction('=')}}.grid( :column => 6, :row => 5, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '='; command {calcresult}}.grid( :column => 6, :row => 5, :sticky => 'w')
 # create the button with value +
-Tk::Tile::Button.new(content) {text '+'; command {setaction('+')}}.grid( :column => 7, :row => 5, :sticky => 'w')
+Tk::Tile::Button.new(content) {text '+'; command {manageaction('+')}}.grid( :column => 7, :row => 5, :sticky => 'w')
 
 # create the button with value c
-Tk::Tile::Button.new(content) {text 'c'; command {setaction('c')}}.grid( :column => 4, :row => 6, :sticky => 'w')
+Tk::Tile::Button.new(content) {text 'c'; command {resetcalc}}.grid( :column => 4, :row => 6, :sticky => 'w')
 
 TkWinfo.children(content).each {|w| TkGrid.configure w, :padx => 5, :pady => 5}
-tl_overview.focus
+tl_result.focus
 enteramountscreen.bind("Return") {calcresult}
-
 
 def calcresult
   begin
@@ -128,6 +127,9 @@ def calcresult
         $svcalc = $prevvalue / $currvalue 
      end
      
+     if $svcalc < 0
+       $svcalc = 0
+     end
      puts 'current value change to ' + $svcalc.to_s 
      $currvalue.value = $svcalc
         
@@ -139,28 +141,34 @@ def calcresult
   end
 end
 
-def add1digit(digit)
+def managedigit(digitaction, digit)
   begin
-     puts 'add1digit <' + digit +'>'
+     puts 'managedigit direction <' + digitaction + '> digit <' + digit +'>'
      # if the comma-value has been entered at least once
-     if (digit == '.' and $commaset == '1')
-         puts 'can not enter more than 1 comma'  
+     if digitaction == '+'
+       if (digit == '.' and $commaset == '1')
+           puts 'can not enter more than 1 comma'  
+       else
+         if digit == '.'
+           $commaset = '1'
+         end   
+         # if the input field is at its initial 0-value replace the digit instead of concatenating it
+         #if $svcalc == '0'
+         if $currvaluereset == 'y'
+           $currvaluereset = 'n' 
+           $svcalc = digit
+         else  
+           $svcalc = $svcalc + digit
+         end  
+       end 
      else
-       if digit == '.'
-         $commaset = '1'
+       $svcalc.chop
+       if $svcalc.length == 0
+         $svcalc = 0
        end   
-       # if the input field is at its initial 0-value replace the digit instead of concatenating it
-       #if $svcalc == '0'
-       if $currvaluereset == 'y'
-         $currvaluereset = 'n' 
-         $svcalc = digit
-       else  
-         $svcalc = $svcalc + digit
-       end   
-       $currvalue.value = $svcalc
-       
-       puts 'svcalc value value ' + $svcalc.to_s 
-     end   
+     end 
+     $currvalue.value = $svcalc  
+     puts 'svcalc value value ' + $svcalc.to_s   
   rescue
      puts 'add 1 digit error'
      puts 'prevvalue ' + $prevvalue.to_s 
@@ -170,21 +178,27 @@ def add1digit(digit)
   end
 end
 
-def manageconsumption(price, action)
-  begin 
-      add1digit(price)
-      setaction(action)
-  end
-end
-
-
 def delete1digit
   begin
      puts 'delete 1 digit'
-     #$tl_overview.value = 'Stefano'
+     $svcalc 
   rescue
      puts 'delete 1 digit error'
-     #$tl_overview.value = 'rescue 3'
+  end
+end
+
+def manageaction (action)
+  begin
+    calcresult
+    setaction(action)
+  end
+end
+
+def manageconsumption(price, action)
+  begin 
+    managedigit('+', price)
+    setaction(action)
+    calcresult
   end
 end
 
@@ -192,24 +206,14 @@ def setaction(action)
   begin 
      puts 'setaction <' + action + '>'
      $actoperf = case action
-     when 'c'
-       resetcalc
-     when '='
-       calcresult
      when '+'
-       calcresult
        $actoperf = 'add'
      when '-'
-       calcresult
        $actoperf = 'subtract'
      when 'x'
-       calcresult
        $actoperf = 'multiply'
      when '%' 
-       calcresult
        $actoperf = 'divide'
-     when '='
-       calcresult
      else
        $actoperf = 'unknown action'
      end 
@@ -225,6 +229,5 @@ def resetcalc
     $currvaluereset = 'y'
   end
 end
-
 
 Tk.mainloop
